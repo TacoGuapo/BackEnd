@@ -4,7 +4,7 @@ import db from '../config/db.js';
 import jwt from 'jsonwebtoken';
 import { DB_SECRET_KEY } from '../config/config.js';
 
-// Crear usuario
+
 export const crearUsuario = async (req, res) => {
     const { email, contraseña } = req.body;
     if (!email || !contraseña) {
@@ -12,7 +12,7 @@ export const crearUsuario = async (req, res) => {
     }
 
     try {
-        // Verificar si el email ya existe
+       
         const [rows] = await db.execute('SELECT * FROM usuarios WHERE email = ?', [email]);
         if (rows.length > 0) {
             return res.status(409).json({ error: 'Correo Existente' });
